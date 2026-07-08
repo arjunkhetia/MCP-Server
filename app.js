@@ -97,10 +97,18 @@ logger.token('datetime', function displayTime() {
 });
 
 // Allowing access headers and requests
+// Mcp-Session-Id is listed both as an allowed request header (browser clients
+// attach it to every call after initialize) and as an exposed response header
+// (browser JS can otherwise only read a small "safe" allowlist of response
+// headers on cross-origin requests, which does not include this one).
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Methods", "HEAD, OPTIONS, GET, POST, PUT, PATCH, DELETE, CONNECT");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, Authorization, Mcp-Session-Id");
+    res.header("Access-Control-Expose-Headers", "Mcp-Session-Id");
+    if (req.method === 'OPTIONS') {
+        return res.sendStatus(204);
+    }
     next();
 });
 
