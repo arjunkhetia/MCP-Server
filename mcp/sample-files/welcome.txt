@@ -1,0 +1,5 @@
+Welcome to the MCP Server file demo!
+
+This file lives in mcp/sample-files/ and is served through the
+`list-files` and `read-file` tools to show how an MCP server can
+expose sandboxed filesystem access to a client.

@@ -1,0 +1,5 @@
+{
+  "project": "MCP-Server",
+  "description": "Demonstration Model Context Protocol server built with Node.js and Express",
+  "tools": ["ping", "text-stats", "generate-avatar", "list-files", "read-file", "roll-dice"]
+}
